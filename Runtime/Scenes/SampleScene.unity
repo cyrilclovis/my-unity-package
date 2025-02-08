@@ -440,6 +440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b860c9f86ff3c4082ea20f9c87be2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multipleUse: 0
+  isInteractable: 1
+  tooltipMessage: interact
 --- !u!1 &1822647921
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +457,7 @@ GameObject:
   - component: {fileID: 1822647922}
   - component: {fileID: 1822647926}
   - component: {fileID: 1822647927}
+  - component: {fileID: 1822647928}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -567,6 +571,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1822647928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822647921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0dd0ff55e545949b87989ddfe845be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionInputData: {fileID: 11400000, guid: 7cb8b48d85b9b494294dcf6671a78b73, type: 2}
 --- !u!1 &2077933913
 GameObject:
   m_ObjectHideFlags: 0

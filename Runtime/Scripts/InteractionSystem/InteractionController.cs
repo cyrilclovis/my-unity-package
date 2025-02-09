@@ -15,6 +15,7 @@ public class InteractionController : MonoBehaviour
             Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
             if (Physics.SphereCast(r, SphereRadius, out RaycastHit hitInfo, InteractRange))
             {
+
                 if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
                 {
                     interactObj.OnInteract();

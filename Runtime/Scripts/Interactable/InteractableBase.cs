@@ -22,7 +22,7 @@ public class InteractableBase : MonoBehaviour, IInteractable
     #endregion
 
     #region Methods
-    public virtual void OnInteract()
+    public virtual void OnInteract() // IInterractable
     {
         Debug.Log("INTERACTED: " + gameObject.name);
     }

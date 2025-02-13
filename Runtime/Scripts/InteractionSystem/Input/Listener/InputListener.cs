@@ -22,8 +22,8 @@ public class InputListener : MonoBehaviour
     #region Custom Methods
     void GetInteractionInputData()
     {
-        interactionInputData.InteractedClicked = Input.GetKeyDown(KeyCode.E);
-        interactionInputData.InteractedReleased = Input.GetKeyUp(KeyCode.E);
+        interactionInputData.InteractedClicked = Input.GetKeyDown(KeyCode.P);
+        interactionInputData.InteractedReleased = Input.GetKeyUp(KeyCode.P);
     }
     #endregion
 }

@@ -555,7 +555,7 @@ MonoBehaviour:
   multipleUse: 0
   isInteractable: 1
   tooltipMessage: interact
-  offset: {fileID: 1868561737}
+  examinationHeight: 1
   isExamining: 0
 --- !u!1 &1822647921
 GameObject:
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822647921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c0dd0ff55e545949b87989ddfe845be, type: 3}
   m_Name: 
@@ -714,11 +714,6 @@ MonoBehaviour:
   InteractorSource: {fileID: 1822647925}
   InteractRange: 10
   SphereRadius: 0.5
---- !u!1 &1868561737 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2966877603567658268, guid: eda9dab08dc146c4096c6a17fc645104, type: 3}
-  m_PrefabInstance: {fileID: 2966877605299066965}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1868561741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2966877603567658264, guid: eda9dab08dc146c4096c6a17fc645104, type: 3}

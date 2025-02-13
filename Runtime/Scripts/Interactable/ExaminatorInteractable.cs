@@ -5,57 +5,47 @@ using Cursor = UnityEngine.Cursor;
 
 public class ExaminatorInteractable : InteractableBase
 {
-    public GameObject offset; // Offset pour l'examen
+    public float examinationHeight = 1.0f; // Hauteur à laquelle l'objet s'élève
     public bool isExamining = false; // Statut d'examen
     private Vector3 lastMousePosition; // Dernière position de la souris
-
     private Transform examinedObject; // Objet actuellement examiné
+    private Vector3 originalPosition; // Position initiale de l'objet
 
-    // Cette méthode est maintenant utilisée pour interagir avec l'objet
     public override void OnInteract()
     {
-        // Si on interagit avec l'objet, on démarre l'examen
         Debug.Log("[EXAMEN] Interaction commencée");
-
-        // Enregistrer l'objet que l'on va examiner
         examinedObject = this.transform;
-
-        isExamining = true; // Marque l'objet comme étant en examen
-        Examine(); // Appelle la méthode Examine pour commencer
-        StartExamination(); // Démarre l'examen visuel
+        originalPosition = examinedObject.position;
+        isExamining = true;
+        Examine();
     }
 
-    void Update()
+
+    #region Environnement de l'examen
+
+    public void BeginExamination()
     {
-        // Si l'objet est en cours d'examen, appelle Examine chaque frame
-        if (isExamining)
-        {
-            Examine();
-        }
+        isExamining = true;
+        Examine();
     }
 
-    void StartExamination()
+    // Appel à chaque update et permet donc la rotation de l'objet !!
+    private void Examine()
     {
-        lastMousePosition = Input.mousePosition;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        MakeExaminedObjectHighEnough();
+        RotateExaminedObjectOnMouseMovement();
     }
 
-    void StopExamination()
+    // On met l'objet suffisamment haut pour que l'utilisateur puisse le voir sous toutes ces facettes lorsqu'il le tourne dans l'espace (sans qu'il y a de conflit avec le sol)
+    private void MakeExaminedObjectHighEnough()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        examinedObject.position = new Vector3(examinedObject.position.x, originalPosition.y + examinationHeight, examinedObject.position.z);
     }
 
-    void Examine()
+    private void RotateExaminedObjectOnMouseMovement()
     {
         if (examinedObject != null)
         {
-            // EN examen, soit tu continue le mouevment, soit tu  te fais évaluer !!
-            // Utiliser un facteur de lerp plus grand pour un déplacement plus rapide
-            float moveSpeed = 0.5f;  // Augmente cette valeur pour accélérer le mouvement
-            examinedObject.position = Vector3.Lerp(examinedObject.position, offset.transform.position, moveSpeed * Time.deltaTime);
-
             Vector3 deltaMouse = Input.mousePosition - lastMousePosition;
             float rotationSpeed = 0.8f;
             examinedObject.Rotate(deltaMouse.x * rotationSpeed * Vector3.up, Space.World);
@@ -65,13 +55,32 @@ public class ExaminatorInteractable : InteractableBase
     }
 
 
-    // Méthode pour vérifier l'état de l'examen
+
+
+    void Update()
+    {
+        if (isExamining)
+        {
+            Examine();
+        }
+    }
+
+    #endregion
+
+
+    void StopExamination()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        examinedObject.position = originalPosition; // Remet l'objet à sa position d'origine
+    }
+
+
     public bool getIsExamining()
     {
         return isExamining;
     }
 
-    // Si besoin de sortir de l'examen, tu peux appeler cette méthode
     public void ExitExamination()
     {
         StopExamination();

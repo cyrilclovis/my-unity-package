@@ -17,4 +17,9 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync(sceneName);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
